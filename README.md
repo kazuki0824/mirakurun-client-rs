@@ -1,3 +1,5 @@
+![ci workflow](https://github.com/kazuki0824/mirakurun-client-rs/actions/workflows/ci.yml/badge.svg)
+
 # Rust API client for Mirakurun
 
 DVR Tuner Server Service for Chinachu Air.
@@ -22,7 +24,7 @@ mirakurun_client = "^1.0"
 
 ## Documentation for API Endpoints
 
-All URIs are relative to *http://localhost:40772/api*
+All URIs are relative to *http://{your_host}:{your_port(40772)}/api*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
