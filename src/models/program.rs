@@ -9,9 +9,10 @@
  */
 
 
+use chrono::{DateTime, Utc};
+use chrono::serde::ts_milliseconds;
 
-
-#[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
+#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
 pub struct Program {
     #[serde(rename = "id")]
     pub id: i64,
@@ -21,8 +22,8 @@ pub struct Program {
     pub service_id: i32,
     #[serde(rename = "networkId")]
     pub network_id: i32,
-    #[serde(rename = "startAt")]
-    pub start_at: i32,
+    #[serde(rename = "startAt", with = "ts_milliseconds")]
+    pub start_at: DateTime<Utc>,
     #[serde(rename = "duration")]
     pub duration: i32,
     #[serde(rename = "isFree")]
@@ -46,7 +47,7 @@ pub struct Program {
 }
 
 impl Program {
-    pub fn new(id: i64, event_id: i32, service_id: i32, network_id: i32, start_at: i32, duration: i32, is_free: bool) -> Program {
+    pub fn new(id: i64, event_id: i32, service_id: i32, network_id: i32, start_at: DateTime<Utc>, duration: i32, is_free: bool) -> Program {
         Program {
             id,
             event_id,
