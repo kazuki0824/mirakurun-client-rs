@@ -1,0 +1,1 @@
+docker run --rm -u `id -u`:`id -g` -v ${PWD}:/local openapitools/openapi-generator-cli  generate  --input-spec /local/def/docs.json --generator-name rust --output /local --additional-properties=packageName=mirakurun_client  --additional-properties=supportAsync=false
