@@ -19,7 +19,8 @@ pub struct ProgramAudios {
     pub component_tag: Option<i32>,
     #[serde(rename = "isMain", skip_serializing_if = "Option::is_none")]
     pub is_main: Option<bool>,
-    #[serde(rename = "samplingRate", skip_serializing_if = "Option::is_none")]
+    //TODO: serde_repr is needed to avoid ExpectedSomeValue error
+    #[serde(rename = "samplingRate", skip_serializing_if = "Option::is_none", skip_deserializing)]
     pub sampling_rate: Option<crate::models::ProgramAudioSamplingRate>,
     #[serde(rename = "langs", skip_serializing_if = "Option::is_none")]
     pub langs: Option<Vec<Langs>>,
