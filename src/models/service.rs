@@ -14,7 +14,7 @@
 #[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
 pub struct Service {
     #[serde(rename = "id")]
-    pub id: i32,
+    pub id: i64,
     #[serde(rename = "serviceId")]
     pub service_id: i32,
     #[serde(rename = "networkId")]
@@ -38,7 +38,7 @@ pub struct Service {
 }
 
 impl Service {
-    pub fn new(id: i32, service_id: i32, network_id: i32, name: String, _type: i32) -> Service {
+    pub fn new(id: i64, service_id: i32, network_id: i32, name: String, _type: i32) -> Service {
         Service {
             id,
             service_id,
