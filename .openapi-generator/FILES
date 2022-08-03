@@ -20,7 +20,7 @@ docs/LogApi.md
 docs/MiscApi.md
 docs/Program.md
 docs/ProgramAudioSamplingRate.md
-docs/ProgramAudios.md
+docs/ProgramAudiosInner.md
 docs/ProgramGenre.md
 docs/ProgramSeries.md
 docs/ProgramVideo.md
@@ -43,7 +43,7 @@ docs/StreamApi.md
 docs/TunerDevice.md
 docs/TunerProcess.md
 docs/TunerUser.md
-docs/TunerUserStreamInfo.md
+docs/TunerUserStreamInfoValue.md
 docs/TunerUserStreamSetting.md
 docs/TunersApi.md
 docs/Version.md
@@ -77,7 +77,7 @@ src/models/event_type.rs
 src/models/mod.rs
 src/models/program.rs
 src/models/program_audio_sampling_rate.rs
-src/models/program_audios.rs
+src/models/program_audios_inner.rs
 src/models/program_genre.rs
 src/models/program_series.rs
 src/models/program_video.rs
@@ -96,6 +96,6 @@ src/models/status_timer_accuracy_m1.rs
 src/models/tuner_device.rs
 src/models/tuner_process.rs
 src/models/tuner_user.rs
-src/models/tuner_user_stream_info.rs
+src/models/tuner_user_stream_info_value.rs
 src/models/tuner_user_stream_setting.rs
 src/models/version.rs

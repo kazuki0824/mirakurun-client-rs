@@ -15,7 +15,7 @@ Name | Type | Description | Notes
 **description** | Option<**String**> |  | [optional]
 **genres** | Option<[**Vec<crate::models::ProgramGenre>**](ProgramGenre.md)> |  | [optional]
 **video** | Option<[**crate::models::ProgramVideo**](Program_video.md)> |  | [optional]
-**audios** | Option<[**Vec<crate::models::ProgramAudios>**](Program_audios.md)> |  | [optional]
+**audios** | Option<[**Vec<crate::models::ProgramAudiosInner>**](Program_audios_inner.md)> |  | [optional]
 **extended** | Option<[**serde_json::Value**](.md)> |  | [optional]
 **related_items** | Option<[**Vec<crate::models::RelatedItem>**](RelatedItem.md)> |  | [optional]
 **series** | Option<[**crate::models::ProgramSeries**](Program_series.md)> |  | [optional]

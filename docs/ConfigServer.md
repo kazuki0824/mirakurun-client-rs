@@ -18,6 +18,8 @@ Name | Type | Description | Notes
 **logo_data_interval** | Option<**i32**> |  | [optional]
 **disable_eit_parsing** | Option<**bool**> |  | [optional]
 **disable_web_ui** | Option<**bool**> |  | [optional]
+**allow_ipv4_cidr_ranges** | Option<**Vec<String>**> |  | [optional]
+**allow_ipv6_cidr_ranges** | Option<**Vec<String>**> |  | [optional]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

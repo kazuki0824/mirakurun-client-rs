@@ -1,4 +1,4 @@
-# TunerUserStreamInfo
+# TunerUserStreamInfoValue
 
 ## Properties
 
