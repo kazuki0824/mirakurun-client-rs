@@ -9,6 +9,8 @@
  */
 
 
+use chrono::{DateTime, Utc};
+use chrono::serde::ts_milliseconds;
 
 
 #[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
@@ -19,12 +21,12 @@ pub struct Event {
     pub _type: crate::models::EventType,
     #[serde(rename = "data")]
     pub data: serde_json::Value,
-    #[serde(rename = "time")]
-    pub time: i32,
+    #[serde(rename = "time", with = "ts_milliseconds")]
+    pub time: DateTime<Utc>,
 }
 
 impl Event {
-    pub fn new(resource: crate::models::EventResource, _type: crate::models::EventType, data: serde_json::Value, time: i32) -> Event {
+    pub fn new(resource: crate::models::EventResource, _type: crate::models::EventType, data: serde_json::Value, time: DateTime<Utc>) -> Event {
         Event {
             resource,
             _type,

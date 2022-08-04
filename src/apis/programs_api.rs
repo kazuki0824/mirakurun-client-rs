@@ -43,7 +43,7 @@ pub enum GetProgramsError {
 }
 
 
-pub fn get_program(configuration: &configuration::Configuration, id: i32) -> Result<crate::models::Program, Error<GetProgramError>> {
+pub fn get_program(configuration: &configuration::Configuration, id: i64) -> Result<crate::models::Program, Error<GetProgramError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -70,7 +70,7 @@ pub fn get_program(configuration: &configuration::Configuration, id: i32) -> Res
     }
 }
 
-pub fn get_program_stream(configuration: &configuration::Configuration, id: i32, x_mirakurun_priority: Option<i32>, decode: Option<i32>) -> Result<(), Error<GetProgramStreamError>> {
+pub fn get_program_stream(configuration: &configuration::Configuration, id: i64, x_mirakurun_priority: Option<i32>, decode: Option<i32>) -> Result<(), Error<GetProgramStreamError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;

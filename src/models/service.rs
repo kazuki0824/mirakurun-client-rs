@@ -9,20 +9,21 @@
  */
 
 
-
+use chrono::{DateTime, Utc};
+use chrono::serde::ts_milliseconds_option;
 
 #[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
 pub struct Service {
     #[serde(rename = "id")]
-    pub id: i32,
+    pub id: i64,
     #[serde(rename = "serviceId")]
     pub service_id: i32,
     #[serde(rename = "networkId")]
     pub network_id: i32,
     #[serde(rename = "name")]
     pub name: String,
-    #[serde(rename = "type")]
-    pub _type: i32,
+    #[serde(rename = "type", skip_serializing_if = "Option::is_none")]
+    pub _type: Option<i32>,
     #[serde(rename = "logoId", skip_serializing_if = "Option::is_none")]
     pub logo_id: Option<i32>,
     #[serde(rename = "hasLogoData", skip_serializing_if = "Option::is_none")]
@@ -31,14 +32,14 @@ pub struct Service {
     pub remote_control_key_id: Option<i32>,
     #[serde(rename = "epgReady", skip_serializing_if = "Option::is_none")]
     pub epg_ready: Option<bool>,
-    #[serde(rename = "epgUpdatedAt", skip_serializing_if = "Option::is_none")]
-    pub epg_updated_at: Option<i32>,
+    #[serde(rename = "epgUpdatedAt", skip_serializing_if = "Option::is_none", with = "ts_milliseconds_option", default)]
+    pub epg_updated_at: Option<DateTime<Utc>>,
     #[serde(rename = "channel", skip_serializing_if = "Option::is_none")]
     pub channel: Option<Box<crate::models::Channel>>,
 }
 
 impl Service {
-    pub fn new(id: i32, service_id: i32, network_id: i32, name: String, _type: i32) -> Service {
+    pub fn new(id: i64, service_id: i32, network_id: i32, name: String, _type: Option<i32>) -> Service {
         Service {
             id,
             service_id,

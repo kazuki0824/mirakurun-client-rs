@@ -165,7 +165,7 @@ pub fn get_log_stream(configuration: &configuration::Configuration, ) -> Result<
     }
 }
 
-pub fn get_program_stream(configuration: &configuration::Configuration, id: i32, x_mirakurun_priority: Option<i32>, decode: Option<i32>) -> Result<(), Error<GetProgramStreamError>> {
+pub fn get_program_stream(configuration: &configuration::Configuration, id: i64, x_mirakurun_priority: Option<i32>, decode: Option<i32>) -> Result<(), Error<GetProgramStreamError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -198,7 +198,7 @@ pub fn get_program_stream(configuration: &configuration::Configuration, id: i32,
     }
 }
 
-pub fn get_service_stream(configuration: &configuration::Configuration, id: i32, x_mirakurun_priority: Option<i32>, decode: Option<i32>) -> Result<(), Error<GetServiceStreamError>> {
+pub fn get_service_stream(configuration: &configuration::Configuration, id: i64, x_mirakurun_priority: Option<i32>, decode: Option<i32>) -> Result<(), Error<GetServiceStreamError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -231,7 +231,7 @@ pub fn get_service_stream(configuration: &configuration::Configuration, id: i32,
     }
 }
 
-pub fn get_service_stream_by_channel(configuration: &configuration::Configuration, _type: &str, channel: &str, id: i32, x_mirakurun_priority: Option<i32>, decode: Option<i32>) -> Result<(), Error<GetServiceStreamByChannelError>> {
+pub fn get_service_stream_by_channel(configuration: &configuration::Configuration, _type: &str, channel: &str, id: i64, x_mirakurun_priority: Option<i32>, decode: Option<i32>) -> Result<(), Error<GetServiceStreamByChannelError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;

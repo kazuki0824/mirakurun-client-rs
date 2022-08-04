@@ -79,7 +79,7 @@ pub enum GetServicesByChannelError {
 }
 
 
-pub fn get_logo_image(configuration: &configuration::Configuration, id: i32) -> Result<(), Error<GetLogoImageError>> {
+pub fn get_logo_image(configuration: &configuration::Configuration, id: i64) -> Result<(), Error<GetLogoImageError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -106,7 +106,7 @@ pub fn get_logo_image(configuration: &configuration::Configuration, id: i32) -> 
     }
 }
 
-pub fn get_service(configuration: &configuration::Configuration, id: i32) -> Result<crate::models::Service, Error<GetServiceError>> {
+pub fn get_service(configuration: &configuration::Configuration, id: i64) -> Result<crate::models::Service, Error<GetServiceError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -133,7 +133,7 @@ pub fn get_service(configuration: &configuration::Configuration, id: i32) -> Res
     }
 }
 
-pub fn get_service_by_channel(configuration: &configuration::Configuration, _type: &str, channel: &str, id: i32) -> Result<Vec<crate::models::Service>, Error<GetServiceByChannelError>> {
+pub fn get_service_by_channel(configuration: &configuration::Configuration, _type: &str, channel: &str, id: i64) -> Result<Vec<crate::models::Service>, Error<GetServiceByChannelError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -160,7 +160,7 @@ pub fn get_service_by_channel(configuration: &configuration::Configuration, _typ
     }
 }
 
-pub fn get_service_stream(configuration: &configuration::Configuration, id: i32, x_mirakurun_priority: Option<i32>, decode: Option<i32>) -> Result<(), Error<GetServiceStreamError>> {
+pub fn get_service_stream(configuration: &configuration::Configuration, id: i64, x_mirakurun_priority: Option<i32>, decode: Option<i32>) -> Result<(), Error<GetServiceStreamError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -193,7 +193,7 @@ pub fn get_service_stream(configuration: &configuration::Configuration, id: i32,
     }
 }
 
-pub fn get_service_stream_by_channel(configuration: &configuration::Configuration, _type: &str, channel: &str, id: i32, x_mirakurun_priority: Option<i32>, decode: Option<i32>) -> Result<(), Error<GetServiceStreamByChannelError>> {
+pub fn get_service_stream_by_channel(configuration: &configuration::Configuration, _type: &str, channel: &str, id: i64, x_mirakurun_priority: Option<i32>, decode: Option<i32>) -> Result<(), Error<GetServiceStreamByChannelError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
