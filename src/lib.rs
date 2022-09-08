@@ -8,3 +8,5 @@ extern crate reqwest;
 
 pub mod apis;
 pub mod models;
+
+pub use serde_json::from_value;
