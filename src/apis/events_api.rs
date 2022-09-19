@@ -60,7 +60,7 @@ pub fn get_events(
     }
 }
 
-pub fn get_events_stream(configuration: &configuration::Configuration, resource: Option<&str>, _type: Option<&str>) -> Result<impl Iterator<Item = Result<crate::models::Event, serde_json::Error>>, Error<GetEventsStreamError>> {
+pub fn get_events_stream(configuration: &configuration::Configuration, resource: crate::models::EventResource, _type: Option<&str>) -> Result<impl Iterator<Item = Result<crate::models::Event, serde_json::Error>>, Error<GetEventsStreamError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -68,9 +68,12 @@ pub fn get_events_stream(configuration: &configuration::Configuration, resource:
     let local_var_uri_str = format!("{}/events/stream", local_var_configuration.base_path);
     let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
 
-    if let Some(ref local_var_str) = resource {
-        local_var_req_builder = local_var_req_builder.query(&[("resource", &local_var_str.to_string())]);
-    }
+    local_var_req_builder = match resource {
+        Program => local_var_req_builder.query(&[("resource", "program")]),
+        Service => local_var_req_builder.query(&[("resource", "service")]),
+        Tuner => local_var_req_builder.query(&[("resource", "tuner")])
+    };
+
     if let Some(ref local_var_str) = _type {
         local_var_req_builder = local_var_req_builder.query(&[("type", &local_var_str.to_string())]);
     }
