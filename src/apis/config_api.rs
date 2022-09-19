@@ -74,7 +74,7 @@ pub enum UpdateTunersConfigError {
 
 
 /// Entry rewriting specifications: - The scan is performed on a range of channels of the specified type and the entries for those channels, if any, are saved in the configuration file. - If the channel to be scanned is described in the configuration file and is enabled, the scan will not be performed for that channel and the entries described will remain intact. If you do not want to keep the entries, use the `refresh` option. - All entries outside the channel range of the specified type will be deleted. - All entries of a type other than the specified type will remain.  About BS Subchannel Style: - Only when scanning BS, you can specify the channel number in the subchannel style (e.g. BS01_0). To specify the channel number, use minSubCh and maxSubCh in addition to minCh and maxCh. - The subchannel number parameters (minSubCh, maxSubCh) are used only if the type is BS and are ignored otherwise. - Subchannel style scans scan in the following range:     From `BS${minCh}_${minSubCh}` to `BS${maxCh}_${maxSubCh}` - In the subchannel style, minCh and maxCh are zero padded to two digits. minSubCh and maxSubCh are not padded. - BS \"non\" subchannel style scans and GR scans are basically the same. Note that if you scan the wrong channel range, the GR channel will be registered as BS and the BS channel will be registered as GR. This problem does not occur because CS scan uses a character string with `CS` added as a channel number prefix.
-pub fn channel_scan(configuration: &configuration::Configuration, dry_run: Option<bool>, _type: Option<&str>, min_ch: Option<i32>, max_ch: Option<i32>, min_sub_ch: Option<i32>, max_sub_ch: Option<i32>, use_sub_ch: Option<bool>, scan_mode: Option<&str>, set_disabled_on_add: Option<bool>, refresh: Option<bool>) -> Result<(), Error<ChannelScanError>> {
+pub fn channel_scan(configuration: &configuration::Configuration, dry_run: Option<bool>, r#type: Option<&str>, min_ch: Option<i32>, max_ch: Option<i32>, min_sub_ch: Option<i32>, max_sub_ch: Option<i32>, use_sub_ch: Option<bool>, scan_mode: Option<&str>, set_disabled_on_add: Option<bool>, refresh: Option<bool>) -> Result<(), Error<ChannelScanError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -85,7 +85,7 @@ pub fn channel_scan(configuration: &configuration::Configuration, dry_run: Optio
     if let Some(ref local_var_str) = dry_run {
         local_var_req_builder = local_var_req_builder.query(&[("dryRun", &local_var_str.to_string())]);
     }
-    if let Some(ref local_var_str) = _type {
+    if let Some(ref local_var_str) = r#type {
         local_var_req_builder = local_var_req_builder.query(&[("type", &local_var_str.to_string())]);
     }
     if let Some(ref local_var_str) = min_ch {

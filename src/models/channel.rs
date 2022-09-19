@@ -14,7 +14,7 @@
 #[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
 pub struct Channel {
     #[serde(rename = "type")]
-    pub _type: crate::models::ChannelType,
+    pub r#type: crate::models::ChannelType,
     #[serde(rename = "channel")]
     pub channel: String,
     #[serde(rename = "name", skip_serializing_if = "Option::is_none")]
@@ -34,9 +34,9 @@ pub struct Channel {
 }
 
 impl Channel {
-    pub fn new(_type: crate::models::ChannelType, channel: String) -> Channel {
+    pub fn new(r#type: crate::models::ChannelType, channel: String) -> Channel {
         Channel {
-            _type,
+            r#type,
             channel,
             name: None,
             satellite: None,

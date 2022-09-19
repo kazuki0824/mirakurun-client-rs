@@ -14,7 +14,7 @@
 #[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
 pub struct RelatedItem {
     #[serde(rename = "type", skip_serializing_if = "Option::is_none")]
-    pub _type: Option<Type>,
+    pub r#type: Option<Type>,
     #[serde(rename = "networkId", skip_serializing_if = "Option::is_none")]
     pub network_id: Option<i32>,
     #[serde(rename = "serviceId", skip_serializing_if = "Option::is_none")]
@@ -26,7 +26,7 @@ pub struct RelatedItem {
 impl RelatedItem {
     pub fn new() -> RelatedItem {
         RelatedItem {
-            _type: None,
+            r#type: None,
             network_id: None,
             service_id: None,
             event_id: None,

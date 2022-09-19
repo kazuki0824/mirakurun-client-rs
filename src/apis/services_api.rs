@@ -133,12 +133,12 @@ pub fn get_service(configuration: &configuration::Configuration, id: i64) -> Res
     }
 }
 
-pub fn get_service_by_channel(configuration: &configuration::Configuration, _type: &str, channel: &str, id: i64) -> Result<Vec<crate::models::Service>, Error<GetServiceByChannelError>> {
+pub fn get_service_by_channel(configuration: &configuration::Configuration, r#type: &str, channel: &str, id: i64) -> Result<Vec<crate::models::Service>, Error<GetServiceByChannelError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/channels/{type}/{channel}/services/{id}", local_var_configuration.base_path, type=crate::apis::urlencode(_type), channel=crate::apis::urlencode(channel), id=id);
+    let local_var_uri_str = format!("{}/channels/{type}/{channel}/services/{id}", local_var_configuration.base_path, type=crate::apis::urlencode(r#type), channel=crate::apis::urlencode(channel), id=id);
     let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
 
     if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
@@ -193,12 +193,12 @@ pub fn get_service_stream(configuration: &configuration::Configuration, id: i64,
     }
 }
 
-pub fn get_service_stream_by_channel(configuration: &configuration::Configuration, _type: &str, channel: &str, id: i64, x_mirakurun_priority: Option<i32>, decode: Option<i32>) -> Result<(), Error<GetServiceStreamByChannelError>> {
+pub fn get_service_stream_by_channel(configuration: &configuration::Configuration, r#type: &str, channel: &str, id: i64, x_mirakurun_priority: Option<i32>, decode: Option<i32>) -> Result<(), Error<GetServiceStreamByChannelError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/channels/{type}/{channel}/services/{id}/stream", local_var_configuration.base_path, type=crate::apis::urlencode(_type), channel=crate::apis::urlencode(channel), id=id);
+    let local_var_uri_str = format!("{}/channels/{type}/{channel}/services/{id}/stream", local_var_configuration.base_path, type=crate::apis::urlencode(r#type), channel=crate::apis::urlencode(channel), id=id);
     let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
 
     if let Some(ref local_var_str) = decode {
@@ -226,7 +226,7 @@ pub fn get_service_stream_by_channel(configuration: &configuration::Configuratio
     }
 }
 
-pub fn get_services(configuration: &configuration::Configuration, service_id: Option<i32>, network_id: Option<i32>, name: Option<&str>, _type: Option<i32>, channel_type: Option<&str>, channel_channel: Option<&str>) -> Result<Vec<crate::models::Service>, Error<GetServicesError>> {
+pub fn get_services(configuration: &configuration::Configuration, service_id: Option<i32>, network_id: Option<i32>, name: Option<&str>, r#type: Option<i32>, channel_type: Option<&str>, channel_channel: Option<&str>) -> Result<Vec<crate::models::Service>, Error<GetServicesError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -243,7 +243,7 @@ pub fn get_services(configuration: &configuration::Configuration, service_id: Op
     if let Some(ref local_var_str) = name {
         local_var_req_builder = local_var_req_builder.query(&[("name", &local_var_str.to_string())]);
     }
-    if let Some(ref local_var_str) = _type {
+    if let Some(ref local_var_str) = r#type {
         local_var_req_builder = local_var_req_builder.query(&[("type", &local_var_str.to_string())]);
     }
     if let Some(ref local_var_str) = channel_type {
@@ -271,12 +271,12 @@ pub fn get_services(configuration: &configuration::Configuration, service_id: Op
     }
 }
 
-pub fn get_services_by_channel(configuration: &configuration::Configuration, _type: &str, channel: &str) -> Result<Vec<crate::models::Service>, Error<GetServicesByChannelError>> {
+pub fn get_services_by_channel(configuration: &configuration::Configuration, r#type: &str, channel: &str) -> Result<Vec<crate::models::Service>, Error<GetServicesByChannelError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/channels/{type}/{channel}/services", local_var_configuration.base_path, type=crate::apis::urlencode(_type), channel=crate::apis::urlencode(channel));
+    let local_var_uri_str = format!("{}/channels/{type}/{channel}/services", local_var_configuration.base_path, type=crate::apis::urlencode(r#type), channel=crate::apis::urlencode(channel));
     let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
 
     if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {

@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 **service_id** | **i32** |  | 
 **network_id** | **i32** |  | 
 **name** | **String** |  | 
-**_type** | **i32** |  | 
+**r#type** | **i32** |  | 
 **logo_id** | Option<**i32**> |  | [optional]
 **has_logo_data** | Option<**bool**> |  | [optional]
 **remote_control_key_id** | Option<**i32**> |  | [optional]

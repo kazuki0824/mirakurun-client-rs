@@ -13,30 +13,30 @@
 #[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
 pub enum ChannelType {
     #[serde(rename = "GR")]
-    GR,
+    Gr,
     #[serde(rename = "BS")]
-    BS,
+    Bs,
     #[serde(rename = "CS")]
-    CS,
+    Cs,
     #[serde(rename = "SKY")]
-    SKY,
+    Sky,
 
 }
 
 impl ToString for ChannelType {
     fn to_string(&self) -> String {
         match self {
-            Self::GR => String::from("GR"),
-            Self::BS => String::from("BS"),
-            Self::CS => String::from("CS"),
-            Self::SKY => String::from("SKY"),
+            Self::Gr => String::from("GR"),
+            Self::Bs => String::from("BS"),
+            Self::Cs => String::from("CS"),
+            Self::Sky => String::from("SKY"),
         }
     }
 }
 
 impl Default for ChannelType {
     fn default() -> ChannelType {
-        Self::GR
+        Self::Gr
     }
 }
 

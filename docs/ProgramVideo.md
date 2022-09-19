@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**_type** | Option<[**crate::models::ProgramVideoType**](ProgramVideoType.md)> |  | [optional]
+**r#type** | Option<[**crate::models::ProgramVideoType**](ProgramVideoType.md)> |  | [optional]
 **resolution** | Option<[**crate::models::ProgramVideoResolution**](ProgramVideoResolution.md)> |  | [optional]
 **stream_content** | Option<**i32**> |  | [optional]
 **component_type** | Option<**i32**> |  | [optional]

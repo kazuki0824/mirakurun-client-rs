@@ -15,7 +15,7 @@ Method | HTTP request | Description
 
 ## get_channel_stream
 
-> get_channel_stream(_type, channel, x_mirakurun_priority, decode)
+> get_channel_stream(r#type, channel, x_mirakurun_priority, decode)
 
 
 ### Parameters
@@ -23,7 +23,7 @@ Method | HTTP request | Description
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**_type** | **String** |  | [required] |
+**r#type** | **String** |  | [required] |
 **channel** | **String** |  | [required] |
 **x_mirakurun_priority** | Option<**i32**> |  |  |
 **decode** | Option<**i32**> |  |  |
@@ -46,7 +46,7 @@ No authorization required
 
 ## get_events_stream
 
-> Vec<crate::models::Event> get_events_stream(resource, _type)
+> Vec<crate::models::Event> get_events_stream(resource, r#type)
 
 
 ### Parameters
@@ -55,7 +55,7 @@ No authorization required
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **resource** | Option<**String**> |  |  |
-**_type** | Option<**String**> |  |  |
+**r#type** | Option<**String**> |  |  |
 
 ### Return type
 
@@ -160,7 +160,7 @@ No authorization required
 
 ## get_service_stream_by_channel
 
-> get_service_stream_by_channel(_type, channel, id, x_mirakurun_priority, decode)
+> get_service_stream_by_channel(r#type, channel, id, x_mirakurun_priority, decode)
 
 
 ### Parameters
@@ -168,7 +168,7 @@ No authorization required
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**_type** | **String** |  | [required] |
+**r#type** | **String** |  | [required] |
 **channel** | **String** |  | [required] |
 **id** | **i32** |  | [required] |
 **x_mirakurun_priority** | Option<**i32**> |  |  |

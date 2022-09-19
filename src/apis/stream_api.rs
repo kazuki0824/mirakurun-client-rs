@@ -72,12 +72,12 @@ pub enum GetServiceStreamByChannelError {
 }
 
 
-pub fn get_channel_stream(configuration: &configuration::Configuration, _type: &str, channel: &str, x_mirakurun_priority: Option<i32>, decode: Option<i32>) -> Result<(), Error<GetChannelStreamError>> {
+pub fn get_channel_stream(configuration: &configuration::Configuration, r#type: &str, channel: &str, x_mirakurun_priority: Option<i32>, decode: Option<i32>) -> Result<(), Error<GetChannelStreamError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/channels/{type}/{channel}/stream", local_var_configuration.base_path, type=crate::apis::urlencode(_type), channel=crate::apis::urlencode(channel));
+    let local_var_uri_str = format!("{}/channels/{type}/{channel}/stream", local_var_configuration.base_path, type=crate::apis::urlencode(r#type), channel=crate::apis::urlencode(channel));
     let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
 
     if let Some(ref local_var_str) = decode {
@@ -105,7 +105,7 @@ pub fn get_channel_stream(configuration: &configuration::Configuration, _type: &
     }
 }
 
-pub fn get_events_stream(configuration: &configuration::Configuration, resource: Option<&str>, _type: Option<&str>) -> Result<Vec<crate::models::Event>, Error<GetEventsStreamError>> {
+pub fn get_events_stream(configuration: &configuration::Configuration, resource: Option<&str>, r#type: Option<&str>) -> Result<Vec<crate::models::Event>, Error<GetEventsStreamError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -116,7 +116,7 @@ pub fn get_events_stream(configuration: &configuration::Configuration, resource:
     if let Some(ref local_var_str) = resource {
         local_var_req_builder = local_var_req_builder.query(&[("resource", &local_var_str.to_string())]);
     }
-    if let Some(ref local_var_str) = _type {
+    if let Some(ref local_var_str) = r#type {
         local_var_req_builder = local_var_req_builder.query(&[("type", &local_var_str.to_string())]);
     }
     if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
@@ -231,12 +231,12 @@ pub fn get_service_stream(configuration: &configuration::Configuration, id: i64,
     }
 }
 
-pub fn get_service_stream_by_channel(configuration: &configuration::Configuration, _type: &str, channel: &str, id: i64, x_mirakurun_priority: Option<i32>, decode: Option<i32>) -> Result<(), Error<GetServiceStreamByChannelError>> {
+pub fn get_service_stream_by_channel(configuration: &configuration::Configuration, r#type: &str, channel: &str, id: i64, x_mirakurun_priority: Option<i32>, decode: Option<i32>) -> Result<(), Error<GetServiceStreamByChannelError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/channels/{type}/{channel}/services/{id}/stream", local_var_configuration.base_path, type=crate::apis::urlencode(_type), channel=crate::apis::urlencode(channel), id=id);
+    let local_var_uri_str = format!("{}/channels/{type}/{channel}/services/{id}/stream", local_var_configuration.base_path, type=crate::apis::urlencode(r#type), channel=crate::apis::urlencode(channel), id=id);
     let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
 
     if let Some(ref local_var_str) = decode {

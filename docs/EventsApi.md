@@ -36,7 +36,7 @@ No authorization required
 
 ## get_events_stream
 
-> Vec<crate::models::Event> get_events_stream(resource, _type)
+> Vec<crate::models::Event> get_events_stream(resource, r#type)
 
 
 ### Parameters
@@ -45,7 +45,7 @@ No authorization required
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **resource** | Option<**String**> |  |  |
-**_type** | Option<**String**> |  |  |
+**r#type** | Option<**String**> |  |  |
 
 ### Return type
 

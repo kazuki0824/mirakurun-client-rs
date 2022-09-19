@@ -16,7 +16,7 @@ pub struct ConfigChannelsItem {
     #[serde(rename = "name")]
     pub name: String,
     #[serde(rename = "type")]
-    pub _type: crate::models::ChannelType,
+    pub r#type: crate::models::ChannelType,
     #[serde(rename = "channel")]
     pub channel: String,
     #[serde(rename = "serviceId", skip_serializing_if = "Option::is_none")]
@@ -34,10 +34,10 @@ pub struct ConfigChannelsItem {
 }
 
 impl ConfigChannelsItem {
-    pub fn new(name: String, _type: crate::models::ChannelType, channel: String) -> ConfigChannelsItem {
+    pub fn new(name: String, r#type: crate::models::ChannelType, channel: String) -> ConfigChannelsItem {
         ConfigChannelsItem {
             name,
-            _type,
+            r#type,
             channel,
             service_id: None,
             satellite: None,

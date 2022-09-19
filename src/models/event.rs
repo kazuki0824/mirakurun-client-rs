@@ -18,7 +18,7 @@ pub struct Event {
     #[serde(rename = "resource")]
     pub resource: crate::models::EventResource,
     #[serde(rename = "type")]
-    pub _type: crate::models::EventType,
+    pub r#type: crate::models::EventType,
     #[serde(rename = "data")]
     pub data: serde_json::Value,
     #[serde(rename = "time", with = "ts_milliseconds")]
@@ -26,10 +26,10 @@ pub struct Event {
 }
 
 impl Event {
-    pub fn new(resource: crate::models::EventResource, _type: crate::models::EventType, data: serde_json::Value, time: DateTime<Utc>) -> Event {
+    pub fn new(resource: crate::models::EventResource, r#type: crate::models::EventType, data: serde_json::Value, time: DateTime<Utc>) -> Event {
         Event {
             resource,
-            _type,
+            r#type,
             data,
             time,
         }

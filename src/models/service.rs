@@ -23,7 +23,7 @@ pub struct Service {
     #[serde(rename = "name")]
     pub name: String,
     #[serde(rename = "type", skip_serializing_if = "Option::is_none")]
-    pub _type: Option<i32>,
+    pub r#type: Option<i32>,
     #[serde(rename = "logoId", skip_serializing_if = "Option::is_none")]
     pub logo_id: Option<i32>,
     #[serde(rename = "hasLogoData", skip_serializing_if = "Option::is_none")]
@@ -39,13 +39,13 @@ pub struct Service {
 }
 
 impl Service {
-    pub fn new(id: i64, service_id: i32, network_id: i32, name: String, _type: Option<i32>) -> Service {
+    pub fn new(id: i64, service_id: i32, network_id: i32, name: String, r#type: Option<i32>) -> Service {
         Service {
             id,
             service_id,
             network_id,
             name,
-            _type,
+            r#type,
             logo_id: None,
             has_logo_data: None,
             remote_control_key_id: None,

@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**_type** | [**crate::models::ChannelType**](ChannelType.md) |  | 
+**r#type** | [**crate::models::ChannelType**](ChannelType.md) |  | 
 **channel** | **String** |  | 
 **name** | Option<**String**> |  | [optional]
 **satellite** | Option<**String**> |  | [optional]

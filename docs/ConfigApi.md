@@ -16,7 +16,7 @@ Method | HTTP request | Description
 
 ## channel_scan
 
-> channel_scan(dry_run, _type, min_ch, max_ch, min_sub_ch, max_sub_ch, use_sub_ch, scan_mode, set_disabled_on_add, refresh)
+> channel_scan(dry_run, r#type, min_ch, max_ch, min_sub_ch, max_sub_ch, use_sub_ch, scan_mode, set_disabled_on_add, refresh)
 Channel Scan
 
 Entry rewriting specifications: - The scan is performed on a range of channels of the specified type and the entries for those channels, if any, are saved in the configuration file. - If the channel to be scanned is described in the configuration file and is enabled, the scan will not be performed for that channel and the entries described will remain intact. If you do not want to keep the entries, use the `refresh` option. - All entries outside the channel range of the specified type will be deleted. - All entries of a type other than the specified type will remain.  About BS Subchannel Style: - Only when scanning BS, you can specify the channel number in the subchannel style (e.g. BS01_0). To specify the channel number, use minSubCh and maxSubCh in addition to minCh and maxCh. - The subchannel number parameters (minSubCh, maxSubCh) are used only if the type is BS and are ignored otherwise. - Subchannel style scans scan in the following range:     From `BS${minCh}_${minSubCh}` to `BS${maxCh}_${maxSubCh}` - In the subchannel style, minCh and maxCh are zero padded to two digits. minSubCh and maxSubCh are not padded. - BS \"non\" subchannel style scans and GR scans are basically the same. Note that if you scan the wrong channel range, the GR channel will be registered as BS and the BS channel will be registered as GR. This problem does not occur because CS scan uses a character string with `CS` added as a channel number prefix.
@@ -27,7 +27,7 @@ Entry rewriting specifications: - The scan is performed on a range of channels o
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **dry_run** | Option<**bool**> | dry run. If `true`, the scanned result will not be saved. |  |[default to false]
-**_type** | Option<**String**> | Specifies the channel type to scan. |  |[default to GR]
+**r#type** | Option<**String**> | Specifies the channel type to scan. |  |[default to GR]
 **min_ch** | Option<**i32**> | Specifies the minimum number of channel numbers to scan. |  |
 **max_ch** | Option<**i32**> | Specifies the maximum number of channel numbers to scan. |  |
 **min_sub_ch** | Option<**i32**> | Specifies the minimum number of subchannel numbers to scan. This parameter is only used if the type is `BS` and the bs_subch_style is `true`. |  |

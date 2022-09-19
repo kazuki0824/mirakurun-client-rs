@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **resource** | [**crate::models::EventResource**](EventResource.md) |  | 
-**_type** | [**crate::models::EventType**](EventType.md) |  | 
+**r#type** | [**crate::models::EventType**](EventType.md) |  | 
 **data** | [**serde_json::Value**](.md) |  | 
 **time** | **i32** |  | 
 

@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**_type** | Option<**String**> |  | [optional]
+**r#type** | Option<**String**> |  | [optional]
 **network_id** | Option<**i32**> |  | [optional]
 **service_id** | Option<**i32**> |  | [optional]
 **event_id** | Option<**i32**> |  | [optional]

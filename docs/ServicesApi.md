@@ -72,7 +72,7 @@ No authorization required
 
 ## get_service_by_channel
 
-> Vec<crate::models::Service> get_service_by_channel(_type, channel, id)
+> Vec<crate::models::Service> get_service_by_channel(r#type, channel, id)
 
 
 ### Parameters
@@ -80,7 +80,7 @@ No authorization required
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**_type** | **String** |  | [required] |
+**r#type** | **String** |  | [required] |
 **channel** | **String** |  | [required] |
 **id** | **i32** |  | [required] |
 
@@ -132,7 +132,7 @@ No authorization required
 
 ## get_service_stream_by_channel
 
-> get_service_stream_by_channel(_type, channel, id, x_mirakurun_priority, decode)
+> get_service_stream_by_channel(r#type, channel, id, x_mirakurun_priority, decode)
 
 
 ### Parameters
@@ -140,7 +140,7 @@ No authorization required
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**_type** | **String** |  | [required] |
+**r#type** | **String** |  | [required] |
 **channel** | **String** |  | [required] |
 **id** | **i32** |  | [required] |
 **x_mirakurun_priority** | Option<**i32**> |  |  |
@@ -164,7 +164,7 @@ No authorization required
 
 ## get_services
 
-> Vec<crate::models::Service> get_services(service_id, network_id, name, _type, channel_type, channel_channel)
+> Vec<crate::models::Service> get_services(service_id, network_id, name, r#type, channel_period_type, channel_period_channel)
 
 
 ### Parameters
@@ -175,9 +175,9 @@ Name | Type | Description  | Required | Notes
 **service_id** | Option<**i32**> |  |  |
 **network_id** | Option<**i32**> |  |  |
 **name** | Option<**String**> |  |  |
-**_type** | Option<**i32**> |  |  |
-**channel_type** | Option<**String**> |  |  |
-**channel_channel** | Option<**String**> |  |  |
+**r#type** | Option<**i32**> |  |  |
+**channel_period_type** | Option<**String**> |  |  |
+**channel_period_channel** | Option<**String**> |  |  |
 
 ### Return type
 
@@ -197,7 +197,7 @@ No authorization required
 
 ## get_services_by_channel
 
-> Vec<crate::models::Service> get_services_by_channel(_type, channel)
+> Vec<crate::models::Service> get_services_by_channel(r#type, channel)
 
 
 ### Parameters
@@ -205,7 +205,7 @@ No authorization required
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**_type** | **String** |  | [required] |
+**r#type** | **String** |  | [required] |
 **channel** | **String** |  | [required] |
 
 ### Return type
