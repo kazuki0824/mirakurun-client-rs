@@ -14,4 +14,5 @@ url = "^2.2"
 reqwest = "~0.9"
 
 chrono = {version = "^0.4", features = ["serde"]}
+serde_repr = "~0.1"
 [dev-dependencies]
