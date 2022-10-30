@@ -14,8 +14,6 @@ pub mod error_of_open_api;
 pub use self::error_of_open_api::ErrorOfOpenApi;
 pub mod event;
 pub use self::event::Event;
-pub mod event_resource;
-pub use self::event_resource::EventResource;
 pub mod event_type;
 pub use self::event_type::EventType;
 pub mod program;
