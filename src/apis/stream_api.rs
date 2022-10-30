@@ -72,7 +72,7 @@ pub enum GetServiceStreamByChannelError {
 }
 
 
-pub fn get_channel_stream(configuration: &configuration::Configuration, r#type: &str, channel: &str, x_mirakurun_priority: Option<i32>, decode: Option<i32>) -> Result<(), Error<GetChannelStreamError>> {
+pub async fn get_channel_stream(configuration: &configuration::Configuration, r#type: &str, channel: &str, x_mirakurun_priority: Option<i32>, decode: Option<i32>) -> Result<(), Error<GetChannelStreamError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -91,10 +91,10 @@ pub fn get_channel_stream(configuration: &configuration::Configuration, r#type: 
     }
 
     let local_var_req = local_var_req_builder.build()?;
-    let mut local_var_resp = local_var_client.execute(local_var_req)?;
+    let local_var_resp = local_var_client.execute(local_var_req).await?;
 
     let local_var_status = local_var_resp.status();
-    let local_var_content = local_var_resp.text()?;
+    let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
         Ok(())
@@ -105,7 +105,7 @@ pub fn get_channel_stream(configuration: &configuration::Configuration, r#type: 
     }
 }
 
-pub fn get_events_stream(configuration: &configuration::Configuration, resource: Option<&str>, r#type: Option<&str>) -> Result<Vec<crate::models::Event>, Error<GetEventsStreamError>> {
+pub async fn get_events_stream(configuration: &configuration::Configuration, resource: Option<&str>, r#type: Option<&str>) -> Result<Vec<crate::models::Event>, Error<GetEventsStreamError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -124,10 +124,10 @@ pub fn get_events_stream(configuration: &configuration::Configuration, resource:
     }
 
     let local_var_req = local_var_req_builder.build()?;
-    let mut local_var_resp = local_var_client.execute(local_var_req)?;
+    let local_var_resp = local_var_client.execute(local_var_req).await?;
 
     let local_var_status = local_var_resp.status();
-    let local_var_content = local_var_resp.text()?;
+    let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
         serde_json::from_str(&local_var_content).map_err(Error::from)
@@ -138,7 +138,7 @@ pub fn get_events_stream(configuration: &configuration::Configuration, resource:
     }
 }
 
-pub fn get_log_stream(configuration: &configuration::Configuration, ) -> Result<(), Error<GetLogStreamError>> {
+pub async fn get_log_stream(configuration: &configuration::Configuration, ) -> Result<(), Error<GetLogStreamError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -151,10 +151,10 @@ pub fn get_log_stream(configuration: &configuration::Configuration, ) -> Result<
     }
 
     let local_var_req = local_var_req_builder.build()?;
-    let mut local_var_resp = local_var_client.execute(local_var_req)?;
+    let local_var_resp = local_var_client.execute(local_var_req).await?;
 
     let local_var_status = local_var_resp.status();
-    let local_var_content = local_var_resp.text()?;
+    let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
         Ok(())
@@ -165,7 +165,7 @@ pub fn get_log_stream(configuration: &configuration::Configuration, ) -> Result<
     }
 }
 
-pub fn get_program_stream(configuration: &configuration::Configuration, id: i64, x_mirakurun_priority: Option<i32>, decode: Option<i32>) -> Result<(), Error<GetProgramStreamError>> {
+pub async fn get_program_stream(configuration: &configuration::Configuration, id: i64, x_mirakurun_priority: Option<i32>, decode: Option<i32>) -> Result<(), Error<GetProgramStreamError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -184,10 +184,10 @@ pub fn get_program_stream(configuration: &configuration::Configuration, id: i64,
     }
 
     let local_var_req = local_var_req_builder.build()?;
-    let mut local_var_resp = local_var_client.execute(local_var_req)?;
+    let local_var_resp = local_var_client.execute(local_var_req).await?;
 
     let local_var_status = local_var_resp.status();
-    let local_var_content = local_var_resp.text()?;
+    let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
         Ok(())
@@ -198,7 +198,7 @@ pub fn get_program_stream(configuration: &configuration::Configuration, id: i64,
     }
 }
 
-pub fn get_service_stream(configuration: &configuration::Configuration, id: i64, x_mirakurun_priority: Option<i32>, decode: Option<i32>) -> Result<(), Error<GetServiceStreamError>> {
+pub async fn get_service_stream(configuration: &configuration::Configuration, id: i64, x_mirakurun_priority: Option<i32>, decode: Option<i32>) -> Result<(), Error<GetServiceStreamError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -217,10 +217,10 @@ pub fn get_service_stream(configuration: &configuration::Configuration, id: i64,
     }
 
     let local_var_req = local_var_req_builder.build()?;
-    let mut local_var_resp = local_var_client.execute(local_var_req)?;
+    let local_var_resp = local_var_client.execute(local_var_req).await?;
 
     let local_var_status = local_var_resp.status();
-    let local_var_content = local_var_resp.text()?;
+    let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
         Ok(())
@@ -231,7 +231,7 @@ pub fn get_service_stream(configuration: &configuration::Configuration, id: i64,
     }
 }
 
-pub fn get_service_stream_by_channel(configuration: &configuration::Configuration, r#type: &str, channel: &str, id: i64, x_mirakurun_priority: Option<i32>, decode: Option<i32>) -> Result<(), Error<GetServiceStreamByChannelError>> {
+pub async fn get_service_stream_by_channel(configuration: &configuration::Configuration, r#type: &str, channel: &str, id: i64, x_mirakurun_priority: Option<i32>, decode: Option<i32>) -> Result<(), Error<GetServiceStreamByChannelError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -250,10 +250,10 @@ pub fn get_service_stream_by_channel(configuration: &configuration::Configuratio
     }
 
     let local_var_req = local_var_req_builder.build()?;
-    let mut local_var_resp = local_var_client.execute(local_var_req)?;
+    let local_var_resp = local_var_client.execute(local_var_req).await?;
 
     let local_var_status = local_var_resp.status();
-    let local_var_content = local_var_resp.text()?;
+    let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
         Ok(())

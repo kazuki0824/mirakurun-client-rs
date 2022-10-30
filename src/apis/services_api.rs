@@ -79,7 +79,7 @@ pub enum GetServicesByChannelError {
 }
 
 
-pub fn get_logo_image(configuration: &configuration::Configuration, id: i64) -> Result<(), Error<GetLogoImageError>> {
+pub async fn get_logo_image(configuration: &configuration::Configuration, id: i64) -> Result<(), Error<GetLogoImageError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -92,10 +92,10 @@ pub fn get_logo_image(configuration: &configuration::Configuration, id: i64) -> 
     }
 
     let local_var_req = local_var_req_builder.build()?;
-    let mut local_var_resp = local_var_client.execute(local_var_req)?;
+    let local_var_resp = local_var_client.execute(local_var_req).await?;
 
     let local_var_status = local_var_resp.status();
-    let local_var_content = local_var_resp.text()?;
+    let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
         Ok(())
@@ -106,7 +106,7 @@ pub fn get_logo_image(configuration: &configuration::Configuration, id: i64) -> 
     }
 }
 
-pub fn get_service(configuration: &configuration::Configuration, id: i64) -> Result<crate::models::Service, Error<GetServiceError>> {
+pub async fn get_service(configuration: &configuration::Configuration, id: i64) -> Result<crate::models::Service, Error<GetServiceError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -119,10 +119,10 @@ pub fn get_service(configuration: &configuration::Configuration, id: i64) -> Res
     }
 
     let local_var_req = local_var_req_builder.build()?;
-    let mut local_var_resp = local_var_client.execute(local_var_req)?;
+    let local_var_resp = local_var_client.execute(local_var_req).await?;
 
     let local_var_status = local_var_resp.status();
-    let local_var_content = local_var_resp.text()?;
+    let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
         serde_json::from_str(&local_var_content).map_err(Error::from)
@@ -133,7 +133,7 @@ pub fn get_service(configuration: &configuration::Configuration, id: i64) -> Res
     }
 }
 
-pub fn get_service_by_channel(configuration: &configuration::Configuration, r#type: &str, channel: &str, id: i64) -> Result<Vec<crate::models::Service>, Error<GetServiceByChannelError>> {
+pub async fn get_service_by_channel(configuration: &configuration::Configuration, r#type: &str, channel: &str, id: i64) -> Result<Vec<crate::models::Service>, Error<GetServiceByChannelError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -146,10 +146,10 @@ pub fn get_service_by_channel(configuration: &configuration::Configuration, r#ty
     }
 
     let local_var_req = local_var_req_builder.build()?;
-    let mut local_var_resp = local_var_client.execute(local_var_req)?;
+    let local_var_resp = local_var_client.execute(local_var_req).await?;
 
     let local_var_status = local_var_resp.status();
-    let local_var_content = local_var_resp.text()?;
+    let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
         serde_json::from_str(&local_var_content).map_err(Error::from)
@@ -160,7 +160,7 @@ pub fn get_service_by_channel(configuration: &configuration::Configuration, r#ty
     }
 }
 
-pub fn get_service_stream(configuration: &configuration::Configuration, id: i64, x_mirakurun_priority: Option<i32>, decode: Option<i32>) -> Result<(), Error<GetServiceStreamError>> {
+pub async fn get_service_stream(configuration: &configuration::Configuration, id: i64, x_mirakurun_priority: Option<i32>, decode: Option<i32>) -> Result<(), Error<GetServiceStreamError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -179,10 +179,10 @@ pub fn get_service_stream(configuration: &configuration::Configuration, id: i64,
     }
 
     let local_var_req = local_var_req_builder.build()?;
-    let mut local_var_resp = local_var_client.execute(local_var_req)?;
+    let local_var_resp = local_var_client.execute(local_var_req).await?;
 
     let local_var_status = local_var_resp.status();
-    let local_var_content = local_var_resp.text()?;
+    let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
         Ok(())
@@ -193,7 +193,7 @@ pub fn get_service_stream(configuration: &configuration::Configuration, id: i64,
     }
 }
 
-pub fn get_service_stream_by_channel(configuration: &configuration::Configuration, r#type: &str, channel: &str, id: i64, x_mirakurun_priority: Option<i32>, decode: Option<i32>) -> Result<(), Error<GetServiceStreamByChannelError>> {
+pub async fn get_service_stream_by_channel(configuration: &configuration::Configuration, r#type: &str, channel: &str, id: i64, x_mirakurun_priority: Option<i32>, decode: Option<i32>) -> Result<(), Error<GetServiceStreamByChannelError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -212,10 +212,10 @@ pub fn get_service_stream_by_channel(configuration: &configuration::Configuratio
     }
 
     let local_var_req = local_var_req_builder.build()?;
-    let mut local_var_resp = local_var_client.execute(local_var_req)?;
+    let local_var_resp = local_var_client.execute(local_var_req).await?;
 
     let local_var_status = local_var_resp.status();
-    let local_var_content = local_var_resp.text()?;
+    let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
         Ok(())
@@ -226,7 +226,7 @@ pub fn get_service_stream_by_channel(configuration: &configuration::Configuratio
     }
 }
 
-pub fn get_services(configuration: &configuration::Configuration, service_id: Option<i32>, network_id: Option<i32>, name: Option<&str>, r#type: Option<i32>, channel_type: Option<&str>, channel_channel: Option<&str>) -> Result<Vec<crate::models::Service>, Error<GetServicesError>> {
+pub async fn get_services(configuration: &configuration::Configuration, service_id: Option<i32>, network_id: Option<i32>, name: Option<&str>, r#type: Option<i32>, channel_period_type: Option<&str>, channel_period_channel: Option<&str>) -> Result<Vec<crate::models::Service>, Error<GetServicesError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -246,10 +246,10 @@ pub fn get_services(configuration: &configuration::Configuration, service_id: Op
     if let Some(ref local_var_str) = r#type {
         local_var_req_builder = local_var_req_builder.query(&[("type", &local_var_str.to_string())]);
     }
-    if let Some(ref local_var_str) = channel_type {
+    if let Some(ref local_var_str) = channel_period_type {
         local_var_req_builder = local_var_req_builder.query(&[("channel.type", &local_var_str.to_string())]);
     }
-    if let Some(ref local_var_str) = channel_channel {
+    if let Some(ref local_var_str) = channel_period_channel {
         local_var_req_builder = local_var_req_builder.query(&[("channel.channel", &local_var_str.to_string())]);
     }
     if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
@@ -257,10 +257,10 @@ pub fn get_services(configuration: &configuration::Configuration, service_id: Op
     }
 
     let local_var_req = local_var_req_builder.build()?;
-    let mut local_var_resp = local_var_client.execute(local_var_req)?;
+    let local_var_resp = local_var_client.execute(local_var_req).await?;
 
     let local_var_status = local_var_resp.status();
-    let local_var_content = local_var_resp.text()?;
+    let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
         serde_json::from_str(&local_var_content).map_err(Error::from)
@@ -271,7 +271,7 @@ pub fn get_services(configuration: &configuration::Configuration, service_id: Op
     }
 }
 
-pub fn get_services_by_channel(configuration: &configuration::Configuration, r#type: &str, channel: &str) -> Result<Vec<crate::models::Service>, Error<GetServicesByChannelError>> {
+pub async fn get_services_by_channel(configuration: &configuration::Configuration, r#type: &str, channel: &str) -> Result<Vec<crate::models::Service>, Error<GetServicesByChannelError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -284,10 +284,10 @@ pub fn get_services_by_channel(configuration: &configuration::Configuration, r#t
     }
 
     let local_var_req = local_var_req_builder.build()?;
-    let mut local_var_resp = local_var_client.execute(local_var_req)?;
+    let local_var_resp = local_var_client.execute(local_var_req).await?;
 
     let local_var_status = local_var_resp.status();
-    let local_var_content = local_var_resp.text()?;
+    let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
         serde_json::from_str(&local_var_content).map_err(Error::from)

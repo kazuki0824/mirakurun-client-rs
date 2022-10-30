@@ -43,7 +43,7 @@ pub enum GetProgramsError {
 }
 
 
-pub fn get_program(configuration: &configuration::Configuration, id: i64) -> Result<crate::models::Program, Error<GetProgramError>> {
+pub async fn get_program(configuration: &configuration::Configuration, id: i64) -> Result<crate::models::Program, Error<GetProgramError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -56,10 +56,10 @@ pub fn get_program(configuration: &configuration::Configuration, id: i64) -> Res
     }
 
     let local_var_req = local_var_req_builder.build()?;
-    let mut local_var_resp = local_var_client.execute(local_var_req)?;
+    let local_var_resp = local_var_client.execute(local_var_req).await?;
 
     let local_var_status = local_var_resp.status();
-    let local_var_content = local_var_resp.text()?;
+    let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
         serde_json::from_str(&local_var_content).map_err(Error::from)
@@ -70,7 +70,7 @@ pub fn get_program(configuration: &configuration::Configuration, id: i64) -> Res
     }
 }
 
-pub fn get_program_stream(configuration: &configuration::Configuration, id: i64, x_mirakurun_priority: Option<i32>, decode: Option<i32>) -> Result<(), Error<GetProgramStreamError>> {
+pub async fn get_program_stream(configuration: &configuration::Configuration, id: i64, x_mirakurun_priority: Option<i32>, decode: Option<i32>) -> Result<(), Error<GetProgramStreamError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -89,10 +89,10 @@ pub fn get_program_stream(configuration: &configuration::Configuration, id: i64,
     }
 
     let local_var_req = local_var_req_builder.build()?;
-    let mut local_var_resp = local_var_client.execute(local_var_req)?;
+    let local_var_resp = local_var_client.execute(local_var_req).await?;
 
     let local_var_status = local_var_resp.status();
-    let local_var_content = local_var_resp.text()?;
+    let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
         Ok(())
@@ -103,7 +103,7 @@ pub fn get_program_stream(configuration: &configuration::Configuration, id: i64,
     }
 }
 
-pub fn get_programs(configuration: &configuration::Configuration, network_id: Option<i32>, service_id: Option<i32>, event_id: Option<i32>) -> Result<Vec<crate::models::Program>, Error<GetProgramsError>> {
+pub async fn get_programs(configuration: &configuration::Configuration, network_id: Option<i32>, service_id: Option<i32>, event_id: Option<i32>) -> Result<Vec<crate::models::Program>, Error<GetProgramsError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -125,10 +125,10 @@ pub fn get_programs(configuration: &configuration::Configuration, network_id: Op
     }
 
     let local_var_req = local_var_req_builder.build()?;
-    let mut local_var_resp = local_var_client.execute(local_var_req)?;
+    let local_var_resp = local_var_client.execute(local_var_req).await?;
 
     let local_var_status = local_var_resp.status();
-    let local_var_content = local_var_resp.text()?;
+    let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
         serde_json::from_str(&local_var_content).map_err(Error::from)

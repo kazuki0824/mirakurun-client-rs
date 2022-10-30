@@ -33,7 +33,7 @@ pub enum UpdateVersionError {
 }
 
 
-pub fn check_version(configuration: &configuration::Configuration, ) -> Result<crate::models::Version, Error<CheckVersionError>> {
+pub async fn check_version(configuration: &configuration::Configuration, ) -> Result<crate::models::Version, Error<CheckVersionError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -46,10 +46,10 @@ pub fn check_version(configuration: &configuration::Configuration, ) -> Result<c
     }
 
     let local_var_req = local_var_req_builder.build()?;
-    let mut local_var_resp = local_var_client.execute(local_var_req)?;
+    let local_var_resp = local_var_client.execute(local_var_req).await?;
 
     let local_var_status = local_var_resp.status();
-    let local_var_content = local_var_resp.text()?;
+    let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
         serde_json::from_str(&local_var_content).map_err(Error::from)
@@ -60,7 +60,7 @@ pub fn check_version(configuration: &configuration::Configuration, ) -> Result<c
     }
 }
 
-pub fn update_version(configuration: &configuration::Configuration, force: Option<bool>) -> Result<(), Error<UpdateVersionError>> {
+pub async fn update_version(configuration: &configuration::Configuration, force: Option<bool>) -> Result<(), Error<UpdateVersionError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -76,10 +76,10 @@ pub fn update_version(configuration: &configuration::Configuration, force: Optio
     }
 
     let local_var_req = local_var_req_builder.build()?;
-    let mut local_var_resp = local_var_client.execute(local_var_req)?;
+    let local_var_resp = local_var_client.execute(local_var_req).await?;
 
     let local_var_status = local_var_resp.status();
-    let local_var_content = local_var_resp.text()?;
+    let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
         Ok(())

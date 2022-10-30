@@ -56,7 +56,7 @@ pub enum IptvXmltvGetError {
 }
 
 
-pub fn iptv_discover_json_get(configuration: &configuration::Configuration, ) -> Result<(), Error<IptvDiscoverJsonGetError>> {
+pub async fn iptv_discover_json_get(configuration: &configuration::Configuration, ) -> Result<(), Error<IptvDiscoverJsonGetError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -69,10 +69,10 @@ pub fn iptv_discover_json_get(configuration: &configuration::Configuration, ) ->
     }
 
     let local_var_req = local_var_req_builder.build()?;
-    let mut local_var_resp = local_var_client.execute(local_var_req)?;
+    let local_var_resp = local_var_client.execute(local_var_req).await?;
 
     let local_var_status = local_var_resp.status();
-    let local_var_content = local_var_resp.text()?;
+    let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
         Ok(())
@@ -83,7 +83,7 @@ pub fn iptv_discover_json_get(configuration: &configuration::Configuration, ) ->
     }
 }
 
-pub fn iptv_lineup_json_get(configuration: &configuration::Configuration, ) -> Result<(), Error<IptvLineupJsonGetError>> {
+pub async fn iptv_lineup_json_get(configuration: &configuration::Configuration, ) -> Result<(), Error<IptvLineupJsonGetError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -96,10 +96,10 @@ pub fn iptv_lineup_json_get(configuration: &configuration::Configuration, ) -> R
     }
 
     let local_var_req = local_var_req_builder.build()?;
-    let mut local_var_resp = local_var_client.execute(local_var_req)?;
+    let local_var_resp = local_var_client.execute(local_var_req).await?;
 
     let local_var_status = local_var_resp.status();
-    let local_var_content = local_var_resp.text()?;
+    let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
         Ok(())
@@ -110,7 +110,7 @@ pub fn iptv_lineup_json_get(configuration: &configuration::Configuration, ) -> R
     }
 }
 
-pub fn iptv_lineup_status_json_get(configuration: &configuration::Configuration, ) -> Result<(), Error<IptvLineupStatusJsonGetError>> {
+pub async fn iptv_lineup_status_json_get(configuration: &configuration::Configuration, ) -> Result<(), Error<IptvLineupStatusJsonGetError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -123,10 +123,10 @@ pub fn iptv_lineup_status_json_get(configuration: &configuration::Configuration,
     }
 
     let local_var_req = local_var_req_builder.build()?;
-    let mut local_var_resp = local_var_client.execute(local_var_req)?;
+    let local_var_resp = local_var_client.execute(local_var_req).await?;
 
     let local_var_status = local_var_resp.status();
-    let local_var_content = local_var_resp.text()?;
+    let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
         Ok(())
@@ -137,7 +137,7 @@ pub fn iptv_lineup_status_json_get(configuration: &configuration::Configuration,
     }
 }
 
-pub fn iptv_playlist_get(configuration: &configuration::Configuration, ) -> Result<(), Error<IptvPlaylistGetError>> {
+pub async fn iptv_playlist_get(configuration: &configuration::Configuration, ) -> Result<(), Error<IptvPlaylistGetError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -150,10 +150,10 @@ pub fn iptv_playlist_get(configuration: &configuration::Configuration, ) -> Resu
     }
 
     let local_var_req = local_var_req_builder.build()?;
-    let mut local_var_resp = local_var_client.execute(local_var_req)?;
+    let local_var_resp = local_var_client.execute(local_var_req).await?;
 
     let local_var_status = local_var_resp.status();
-    let local_var_content = local_var_resp.text()?;
+    let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
         Ok(())
@@ -164,7 +164,7 @@ pub fn iptv_playlist_get(configuration: &configuration::Configuration, ) -> Resu
     }
 }
 
-pub fn iptv_xmltv_get(configuration: &configuration::Configuration, ) -> Result<(), Error<IptvXmltvGetError>> {
+pub async fn iptv_xmltv_get(configuration: &configuration::Configuration, ) -> Result<(), Error<IptvXmltvGetError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -177,10 +177,10 @@ pub fn iptv_xmltv_get(configuration: &configuration::Configuration, ) -> Result<
     }
 
     let local_var_req = local_var_req_builder.build()?;
-    let mut local_var_resp = local_var_client.execute(local_var_req)?;
+    let local_var_resp = local_var_client.execute(local_var_req).await?;
 
     let local_var_status = local_var_resp.status();
-    let local_var_content = local_var_resp.text()?;
+    let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
         Ok(())

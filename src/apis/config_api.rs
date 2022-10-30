@@ -74,7 +74,7 @@ pub enum UpdateTunersConfigError {
 
 
 /// Entry rewriting specifications: - The scan is performed on a range of channels of the specified type and the entries for those channels, if any, are saved in the configuration file. - If the channel to be scanned is described in the configuration file and is enabled, the scan will not be performed for that channel and the entries described will remain intact. If you do not want to keep the entries, use the `refresh` option. - All entries outside the channel range of the specified type will be deleted. - All entries of a type other than the specified type will remain.  About BS Subchannel Style: - Only when scanning BS, you can specify the channel number in the subchannel style (e.g. BS01_0). To specify the channel number, use minSubCh and maxSubCh in addition to minCh and maxCh. - The subchannel number parameters (minSubCh, maxSubCh) are used only if the type is BS and are ignored otherwise. - Subchannel style scans scan in the following range:     From `BS${minCh}_${minSubCh}` to `BS${maxCh}_${maxSubCh}` - In the subchannel style, minCh and maxCh are zero padded to two digits. minSubCh and maxSubCh are not padded. - BS \"non\" subchannel style scans and GR scans are basically the same. Note that if you scan the wrong channel range, the GR channel will be registered as BS and the BS channel will be registered as GR. This problem does not occur because CS scan uses a character string with `CS` added as a channel number prefix.
-pub fn channel_scan(configuration: &configuration::Configuration, dry_run: Option<bool>, r#type: Option<&str>, min_ch: Option<i32>, max_ch: Option<i32>, min_sub_ch: Option<i32>, max_sub_ch: Option<i32>, use_sub_ch: Option<bool>, scan_mode: Option<&str>, set_disabled_on_add: Option<bool>, refresh: Option<bool>) -> Result<(), Error<ChannelScanError>> {
+pub async fn channel_scan(configuration: &configuration::Configuration, dry_run: Option<bool>, r#type: Option<&str>, min_ch: Option<i32>, max_ch: Option<i32>, min_sub_ch: Option<i32>, max_sub_ch: Option<i32>, use_sub_ch: Option<bool>, scan_mode: Option<&str>, set_disabled_on_add: Option<bool>, refresh: Option<bool>) -> Result<(), Error<ChannelScanError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -117,10 +117,10 @@ pub fn channel_scan(configuration: &configuration::Configuration, dry_run: Optio
     }
 
     let local_var_req = local_var_req_builder.build()?;
-    let mut local_var_resp = local_var_client.execute(local_var_req)?;
+    let local_var_resp = local_var_client.execute(local_var_req).await?;
 
     let local_var_status = local_var_resp.status();
-    let local_var_content = local_var_resp.text()?;
+    let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
         Ok(())
@@ -131,7 +131,7 @@ pub fn channel_scan(configuration: &configuration::Configuration, dry_run: Optio
     }
 }
 
-pub fn get_channels_config(configuration: &configuration::Configuration, ) -> Result<Vec<crate::models::ConfigChannelsItem>, Error<GetChannelsConfigError>> {
+pub async fn get_channels_config(configuration: &configuration::Configuration, ) -> Result<Vec<crate::models::ConfigChannelsItem>, Error<GetChannelsConfigError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -144,10 +144,10 @@ pub fn get_channels_config(configuration: &configuration::Configuration, ) -> Re
     }
 
     let local_var_req = local_var_req_builder.build()?;
-    let mut local_var_resp = local_var_client.execute(local_var_req)?;
+    let local_var_resp = local_var_client.execute(local_var_req).await?;
 
     let local_var_status = local_var_resp.status();
-    let local_var_content = local_var_resp.text()?;
+    let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
         serde_json::from_str(&local_var_content).map_err(Error::from)
@@ -158,7 +158,7 @@ pub fn get_channels_config(configuration: &configuration::Configuration, ) -> Re
     }
 }
 
-pub fn get_server_config(configuration: &configuration::Configuration, ) -> Result<crate::models::ConfigServer, Error<GetServerConfigError>> {
+pub async fn get_server_config(configuration: &configuration::Configuration, ) -> Result<crate::models::ConfigServer, Error<GetServerConfigError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -171,10 +171,10 @@ pub fn get_server_config(configuration: &configuration::Configuration, ) -> Resu
     }
 
     let local_var_req = local_var_req_builder.build()?;
-    let mut local_var_resp = local_var_client.execute(local_var_req)?;
+    let local_var_resp = local_var_client.execute(local_var_req).await?;
 
     let local_var_status = local_var_resp.status();
-    let local_var_content = local_var_resp.text()?;
+    let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
         serde_json::from_str(&local_var_content).map_err(Error::from)
@@ -185,7 +185,7 @@ pub fn get_server_config(configuration: &configuration::Configuration, ) -> Resu
     }
 }
 
-pub fn get_tuners_config(configuration: &configuration::Configuration, ) -> Result<Vec<crate::models::ConfigTunersItem>, Error<GetTunersConfigError>> {
+pub async fn get_tuners_config(configuration: &configuration::Configuration, ) -> Result<Vec<crate::models::ConfigTunersItem>, Error<GetTunersConfigError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -198,10 +198,10 @@ pub fn get_tuners_config(configuration: &configuration::Configuration, ) -> Resu
     }
 
     let local_var_req = local_var_req_builder.build()?;
-    let mut local_var_resp = local_var_client.execute(local_var_req)?;
+    let local_var_resp = local_var_client.execute(local_var_req).await?;
 
     let local_var_status = local_var_resp.status();
-    let local_var_content = local_var_resp.text()?;
+    let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
         serde_json::from_str(&local_var_content).map_err(Error::from)
@@ -212,7 +212,7 @@ pub fn get_tuners_config(configuration: &configuration::Configuration, ) -> Resu
     }
 }
 
-pub fn update_channels_config(configuration: &configuration::Configuration, body: Option<Vec<crate::models::ConfigChannelsItem>>) -> Result<Vec<crate::models::ConfigChannelsItem>, Error<UpdateChannelsConfigError>> {
+pub async fn update_channels_config(configuration: &configuration::Configuration, body: Option<Vec<crate::models::ConfigChannelsItem>>) -> Result<Vec<crate::models::ConfigChannelsItem>, Error<UpdateChannelsConfigError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -226,10 +226,10 @@ pub fn update_channels_config(configuration: &configuration::Configuration, body
     local_var_req_builder = local_var_req_builder.json(&body);
 
     let local_var_req = local_var_req_builder.build()?;
-    let mut local_var_resp = local_var_client.execute(local_var_req)?;
+    let local_var_resp = local_var_client.execute(local_var_req).await?;
 
     let local_var_status = local_var_resp.status();
-    let local_var_content = local_var_resp.text()?;
+    let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
         serde_json::from_str(&local_var_content).map_err(Error::from)
@@ -240,7 +240,7 @@ pub fn update_channels_config(configuration: &configuration::Configuration, body
     }
 }
 
-pub fn update_server_config(configuration: &configuration::Configuration, body: Option<crate::models::ConfigServer>) -> Result<crate::models::ConfigServer, Error<UpdateServerConfigError>> {
+pub async fn update_server_config(configuration: &configuration::Configuration, body: Option<crate::models::ConfigServer>) -> Result<crate::models::ConfigServer, Error<UpdateServerConfigError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -254,10 +254,10 @@ pub fn update_server_config(configuration: &configuration::Configuration, body: 
     local_var_req_builder = local_var_req_builder.json(&body);
 
     let local_var_req = local_var_req_builder.build()?;
-    let mut local_var_resp = local_var_client.execute(local_var_req)?;
+    let local_var_resp = local_var_client.execute(local_var_req).await?;
 
     let local_var_status = local_var_resp.status();
-    let local_var_content = local_var_resp.text()?;
+    let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
         serde_json::from_str(&local_var_content).map_err(Error::from)
@@ -268,7 +268,7 @@ pub fn update_server_config(configuration: &configuration::Configuration, body: 
     }
 }
 
-pub fn update_tuners_config(configuration: &configuration::Configuration, body: Option<Vec<crate::models::ConfigTunersItem>>) -> Result<Vec<crate::models::ConfigTunersItem>, Error<UpdateTunersConfigError>> {
+pub async fn update_tuners_config(configuration: &configuration::Configuration, body: Option<Vec<crate::models::ConfigTunersItem>>) -> Result<Vec<crate::models::ConfigTunersItem>, Error<UpdateTunersConfigError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -282,10 +282,10 @@ pub fn update_tuners_config(configuration: &configuration::Configuration, body: 
     local_var_req_builder = local_var_req_builder.json(&body);
 
     let local_var_req = local_var_req_builder.build()?;
-    let mut local_var_resp = local_var_client.execute(local_var_req)?;
+    let local_var_resp = local_var_client.execute(local_var_req).await?;
 
     let local_var_status = local_var_resp.status();
-    let local_var_content = local_var_resp.text()?;
+    let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
         serde_json::from_str(&local_var_content).map_err(Error::from)
