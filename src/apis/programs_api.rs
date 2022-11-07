@@ -70,7 +70,7 @@ pub async fn get_program(configuration: &configuration::Configuration, id: i64) 
     }
 }
 
-pub async fn get_program_stream(configuration: &configuration::Configuration, id: i64, x_mirakurun_priority: Option<i32>, decode: Option<i32>) -> Result<(), Error<GetProgramStreamError>> {
+pub async fn get_program_stream(configuration: &configuration::Configuration, id: i64, x_mirakurun_priority: Option<i32>, decode: Option<i32>) -> Result<reqwest::Response, Error<GetProgramStreamError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -92,11 +92,11 @@ pub async fn get_program_stream(configuration: &configuration::Configuration, id
     let local_var_resp = local_var_client.execute(local_var_req).await?;
 
     let local_var_status = local_var_resp.status();
-    let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        Ok(())
+        Ok(local_var_resp)
     } else {
+        let local_var_content = local_var_resp.text().await?;
         let local_var_entity: Option<GetProgramStreamError> = serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
         Err(Error::ResponseError(local_var_error))

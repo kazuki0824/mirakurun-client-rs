@@ -70,7 +70,6 @@ pub mod misc_api;
 pub mod programs_api;
 pub mod services_api;
 pub mod status_api;
-pub mod stream_api;
 pub mod tuners_api;
 pub mod version_api;
 
