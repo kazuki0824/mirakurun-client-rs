@@ -11,6 +11,7 @@
 
 use chrono::{DateTime, Utc};
 use chrono::serde::ts_milliseconds;
+use serde::{Deserialize, Deserializer};
 
 #[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
 pub struct Program {
@@ -24,8 +25,8 @@ pub struct Program {
     pub network_id: i32,
     #[serde(rename = "startAt", with = "ts_milliseconds")]
     pub start_at: DateTime<Utc>,
-    #[serde(rename = "duration")]
-    pub duration: i32,
+    #[serde(rename = "duration", deserialize_with = "check_empty_duration")]
+    pub duration: Option<i32>,
     #[serde(rename = "isFree")]
     pub is_free: bool,
     #[serde(rename = "name", skip_serializing_if = "Option::is_none")]
@@ -47,7 +48,7 @@ pub struct Program {
 }
 
 impl Program {
-    pub fn new(id: i64, event_id: i32, service_id: i32, network_id: i32, start_at: DateTime<Utc>, duration: i32, is_free: bool) -> Program {
+    pub fn new(id: i64, event_id: i32, service_id: i32, network_id: i32, start_at: DateTime<Utc>, duration: Option<i32>, is_free: bool) -> Program {
         Program {
             id,
             event_id,
@@ -68,4 +69,14 @@ impl Program {
     }
 }
 
-
+fn check_empty_duration<'de, D>(deserialzer: D) -> Result<Option<i32>, D::Error>
+where
+    D: Deserializer<'de>,
+{
+    let raw = i32::deserialize(deserialzer)?;
+    if raw == 0 {
+        Ok(None)
+    } else {
+        Ok(Some(raw))
+    }
+}
