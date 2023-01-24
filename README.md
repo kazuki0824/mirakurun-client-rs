@@ -120,6 +120,6 @@ cargo doc --open
 ```
 
 ## Author
-
+maleicacid (kazukuro0824+dev@gmailDOTcom)
 
 
