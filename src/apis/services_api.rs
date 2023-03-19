@@ -9,6 +9,7 @@
  */
 
 
+use std::time::Duration;
 use reqwest;
 
 use crate::apis::ResponseContent;
@@ -160,13 +161,14 @@ pub async fn get_service_by_channel(configuration: &configuration::Configuration
     }
 }
 
-pub async fn get_service_stream(configuration: &configuration::Configuration, id: i64, x_mirakurun_priority: Option<i32>, decode: Option<i32>) -> Result<(), Error<GetServiceStreamError>> {
+pub async fn get_service_stream(configuration: &configuration::Configuration, id: i64, x_mirakurun_priority: Option<i32>, decode: Option<i32>) -> Result<reqwest::Response, Error<GetServiceStreamError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
 
     let local_var_uri_str = format!("{}/services/{id}/stream", local_var_configuration.base_path, id=id);
-    let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
+    let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str())
+        .timeout(Duration::from_secs(10));
 
     if let Some(ref local_var_str) = decode {
         local_var_req_builder = local_var_req_builder.query(&[("decode", &local_var_str.to_string())]);
@@ -182,11 +184,11 @@ pub async fn get_service_stream(configuration: &configuration::Configuration, id
     let local_var_resp = local_var_client.execute(local_var_req).await?;
 
     let local_var_status = local_var_resp.status();
-    let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        Ok(())
+        Ok(local_var_resp)
     } else {
+        let local_var_content = local_var_resp.text().await?;
         let local_var_entity: Option<GetServiceStreamError> = serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
         Err(Error::ResponseError(local_var_error))
