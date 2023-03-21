@@ -9,7 +9,6 @@
  */
 
 
-use std::time::Duration;
 use reqwest;
 
 use crate::apis::ResponseContent;
