@@ -77,8 +77,7 @@ pub async fn get_program_stream(configuration: &configuration::Configuration, id
     let local_var_client = &local_var_configuration.client;
 
     let local_var_uri_str = format!("{}/programs/{id}/stream", local_var_configuration.base_path, id=id);
-    let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str())
-        .timeout(Duration::from_secs(10));
+    let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
 
     if let Some(ref local_var_str) = decode {
         local_var_req_builder = local_var_req_builder.query(&[("decode", &local_var_str.to_string())]);
