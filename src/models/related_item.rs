@@ -16,11 +16,11 @@ pub struct RelatedItem {
     #[serde(rename = "type", skip_serializing_if = "Option::is_none")]
     pub r#type: Option<Type>,
     #[serde(rename = "networkId", skip_serializing_if = "Option::is_none")]
-    pub network_id: Option<i32>,
+    pub network_id: Option<i64>,
     #[serde(rename = "serviceId", skip_serializing_if = "Option::is_none")]
-    pub service_id: Option<i32>,
+    pub service_id: Option<i64>,
     #[serde(rename = "eventId", skip_serializing_if = "Option::is_none")]
-    pub event_id: Option<i32>,
+    pub event_id: Option<i64>,
 }
 
 impl RelatedItem {
